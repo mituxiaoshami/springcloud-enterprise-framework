@@ -12,8 +12,21 @@
 
     <artifactId>enterprise-framework-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>enterprise-framework-starter</name>
     <description>enterprise-framework-starter</description>
+
+
+
+    <properties>
+        <enterprise-framework-dependencies.version>0.0.1-SNAPSHOT</enterprise-framework-dependencies.version>
+    </properties>
+
+
+    <modules>
+        <module>enterprise-framework-starter-web</module>
+    </modules>
+
 
     <dependencyManagement>
 
@@ -21,10 +34,14 @@
             <dependency>
                 <groupId>com.springcloud.enterprise-framework</groupId>
                 <artifactId>enterprise-framework-dependencies</artifactId>
-                <version>${project.version}</version>
+                <version>${enterprise-framework-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
 
     </dependencyManagement>
+
+
 
 </project>
