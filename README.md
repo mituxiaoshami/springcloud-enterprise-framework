@@ -4,6 +4,12 @@ springcloud framework for enterprise(基于springcloud底座搭建的企业级�
 
 ## model introduce 模块介绍
 
+## 技术栈
+| 技术栈 | 版本 |
+|-------|-------|
+| SpringCloud | 2023.0.1 |
+| SpringBoot | 3.2.4 |
+
 ## 路线图
 - [ ] 框架核心
     - [ ] 基础工具
