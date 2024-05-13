@@ -25,7 +25,11 @@
 
     <modules>
         <module>enterprise-framework-starter-web</module>
+        <module>enterprise-framework-starter-log</module>
+        <module>enterprise-framework-starter-tracing</module>
+        <module>enterprise-framework-starter-feign</module>
     </modules>
+
 
 
     <dependencyManagement>

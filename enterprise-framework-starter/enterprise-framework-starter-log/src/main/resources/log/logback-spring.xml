@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <!-- 应用名称 -->
+    <property name="APP_NAME" value="appLog"/>
+    <!--定义日志文件的存储地址-->
+    <property name="LOG_HOME" value="../logs"/>
+    <!-- 定义日志格式  -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [traceId-%X{traceId},spanId-%X{spanId}][%thread] %logger{50} - %msg%n"/>
+    <!-- 高亮日志格式  -->
+    <property name="HIGHLIGHT_PATTERN" value="%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS} [traceId-%X{traceId},spanId-%X{spanId}]) [%thread] %highlight(%-5level) %green(%logger{50}) - %highlight(%msg) %n"/>
+
+    <!-- 控制台输出-高亮 -->
+    <appender name="CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${HIGHLIGHT_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!--INFO级别文件输出的格式设置 -->
+    <appender name="LOG_INFO_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 日志日常打印日志文件，生成日志示例：/logs/info.log -->
+        <file>${LOG_HOME}/info.log</file>
+        <!-- 如果是 true，日志会被安全的写入文件，即使其他的FileAppender也在向此文件做写入操作，效率低，默认是 false -->
+        <prudent>false</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 压缩日志的路径和日志格式，示例：info-2023-05-26_21.log.zip，%d{yyyy-MM-dd}：表示文件名称包含日期，%i:表示当前是第几个压缩文件 -->
+            <fileNamePattern>${LOG_HOME}/info-%d{yyyy-MM-dd}_%i.log.zip</fileNamePattern>
+            <!-- 如果按天来回滚，则最大保存时间为7天，7天之前的都将被清理掉 -->
+            <maxHistory>7</maxHistory>
+            <!-- 日志总保存量为10GB,超过该日志总量的最早的日志压缩包会被清除 -->
+            <totalSizeCap>10GB</totalSizeCap>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!--文件达到 最大100MB时会被压缩和切割 -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!-- 文件输出的日志 的格式 -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <!-- 级别过滤 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <!--ERROR级别文件输出的格式设置 -->
+    <appender name="LOG_ERROR_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 日志日常打印日志文件，生成日志示例：/logs/error.log -->
+        <file>${LOG_HOME}/error.log</file>
+        <!-- 如果是 true，日志会被安全的写入文件，即使其他的FileAppender也在向此文件做写入操作，效率低，默认是 false -->
+        <prudent>false</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 压缩日志的路径和日志格式，示例：info-2023-05-26_21.log.zip，%d{yyyy-MM-dd}：表示文件名称包含日期，%i:表示当前是第几个压缩文件 -->
+            <fileNamePattern>${LOG_HOME}/error-%d{yyyy-MM-dd}_%i.log.zip</fileNamePattern>
+            <!-- 如果按天来回滚，则最大保存时间为7天，7天之前的都将被清理掉 -->
+            <maxHistory>7</maxHistory>
+            <!-- 日志总保存量为10GB,超过该日志总量的最早的日志压缩包会被清除 -->
+            <totalSizeCap>10GB</totalSizeCap>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!--文件达到 最大100MB时会被压缩和切割 -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!-- 文件输出的日志 的格式 -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <!-- 级别过滤 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+
+    <!--DEBUG级别文件输出的格式设置 -->
+    <appender name="LOG_DEBUG_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 日志日常打印日志文件，生成日志示例：/logs/error.log -->
+        <file>${LOG_HOME}/debug.log</file>
+        <!-- 如果是 true，日志会被安全的写入文件，即使其他的FileAppender也在向此文件做写入操作，效率低，默认是 false -->
+        <prudent>false</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 压缩日志的路径和日志格式，示例：info-2023-05-26_21.log.zip，%d{yyyy-MM-dd}：表示文件名称包含日期，%i:表示当前是第几个压缩文件 -->
+            <fileNamePattern>${LOG_HOME}/debug-%d{yyyy-MM-dd}_%i.log.zip</fileNamePattern>
+            <!-- 如果按天来回滚，则最大保存时间为7天，7天之前的都将被清理掉 -->
+            <maxHistory>7</maxHistory>
+            <!-- 日志总保存量为10GB,超过该日志总量的最早的日志压缩包会被清除 -->
+            <totalSizeCap>10GB</totalSizeCap>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!--文件达到 最大100MB时会被压缩和切割 -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!-- 文件输出的日志 的格式 -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <!-- 级别过滤 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- 过滤不是debug的日志 -->
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <!-- 日志输出级别 -->
+    <logger name="org.springframework" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE_APPENDER"/>
+        <appender-ref ref="LOG_INFO_APPENDER"/>
+        <appender-ref ref="LOG_ERROR_APPENDER"/>
+    </root>
+
+</configuration>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.springcloud.enterprise-framework</groupId>
+        <artifactId>enterprise-framework-starter</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>enterprise-framework-starter-tracing</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <java.version>8</java.version>
+        <jaeger.version>3.3.1</jaeger.version>
+        <lombok.version>1.16.18</lombok.version>
+    </properties>
+
+
+    <dependencies>
+
+        <!-- web启动 -->
+        <dependency>
+            <groupId>com.springcloud.enterprise-framework</groupId>
+            <artifactId>enterprise-framework-starter-web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- 日志 -->
+        <dependency>
+            <groupId>com.springcloud.enterprise-framework</groupId>
+            <artifactId>enterprise-framework-starter-log</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+
+        <!-- feign -->
+        <dependency>
+            <groupId>com.springcloud.enterprise-framework</groupId>
+            <artifactId>enterprise-framework-starter-feign</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+
+        <!-- springCloud 集成jaeger实现全链路追踪 -->
+        <dependency>
+            <groupId>io.opentracing.contrib</groupId>
+            <artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
+            <version>${jaeger.version}</version>
+        </dependency>
+
+
+        <!-- 最新版本的springcloud去除了LoadBalancerFeignClient 采用了FeignBlockingLoadBalancerClient,但是jaeger源码中强依赖了最新版本的springcloud去除了LoadBalancerFeignClient，所以为了兼容，需要这里强指定openfeign版本，保证在类加载的使用还能加载LoadBalancerFeignClient，不报错 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>2.2.6.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
