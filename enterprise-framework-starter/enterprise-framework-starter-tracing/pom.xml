@@ -16,7 +16,6 @@
     <properties>
         <java.version>8</java.version>
         <jaeger.version>3.3.1</jaeger.version>
-        <lombok.version>1.16.18</lombok.version>
     </properties>
 
 

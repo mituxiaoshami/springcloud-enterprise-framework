@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.enterprise.framework.starter.encryption.aspect.SignatureAspect,\
+  com.enterprise.framework.starter.encryption.config.RSAConfigProperties

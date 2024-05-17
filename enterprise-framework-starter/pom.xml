@@ -28,6 +28,7 @@
         <module>enterprise-framework-starter-log</module>
         <module>enterprise-framework-starter-tracing</module>
         <module>enterprise-framework-starter-feign</module>
+        <module>enterprise-framework-starter-encryption</module>
     </modules>
 
 
